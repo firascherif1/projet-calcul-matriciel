@@ -1,0 +1,49 @@
+<div>
+    <img  [src]=myimage class="bg-img">
+  </div>
+     <!-- <button mat-button type="submit"  class="button2" routerLink="matrice">Multiplication Matrice*Matrice</button>
+      <button mat-button type="submit"  class="button3" routerLink="vecteur">Multiplication Matrice*Vecteur</button>
+      <button mat-button type="submit"  class="button4">Résolution Des Systémes</button> -->
+      
+      <!-- votre-composant.component.html -->
+      <h2 class="titre">Calcul   Matricielle</h2>
+      
+      <div class="button-container">
+        <a routerLink="matrice">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span> Matrice ×  Matrice
+        </a>
+        <a routerLink="vecteur">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span> Matrice ×  Vecteur
+        </a>
+        <a routerLink="resolution">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>Résolution Des Systémes
+        </a>
+      </div>
+    
+      <!-- <form [formGroup]="matrixForm">
+        <div *ngFor="let i of range(matrixRows); let rowIndex = index" class="matrix-row">
+          <div *ngFor="let j of range(matrixColumns); let colIndex = index" class="matrix-cell">
+            <input type="number" [formControl]="getFormControl(rowIndex, colIndex)" class="matrix-input">
+          </div>
+        </div>
+        <button (click)="submitMatrix()">Submit Matrix</button>
+      </form> -->
+      
+      <!-- <div>
+        <h3>Matrix Values:</h3>
+        <div *ngFor="let i of range(matrixRows); let rowIndex = index" class="matrix-row">
+          <div *ngFor="let j of range(matrixColumns); let colIndex = index" class="matrix-cell">
+            {{ getFormControl(rowIndex, colIndex).value }}
+          </div>
+        </div>
+      </div> -->
+

@@ -1,0 +1,274 @@
+.bg-img{
+    position: fixed ;
+       height: 100%;
+       width: 100%; 
+       /* object-fit: cover; */
+       z-index: -1; 
+      top: 0;
+      left: 0;
+      bottom: 0;
+   display: flex;
+   
+
+}
+/* .button4{
+    background-color:rgba(81, 0, 255, 0.311);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5%;
+    top: -41px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    
+
+    width: 300px;
+  }
+  .button2{
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 30%;
+    top: -41px;
+    margin-top: 350px;
+    margin-bottom: 10px;
+    
+
+    width: 300px;
+  }
+  .button3{
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5%;
+    top: -41px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+
+    width: 300px;
+  } */
+  /****************************************************/
+  /* .button-container {
+    display: flex;
+    flex-direction: rows;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap:5%
+  }
+  
+  a {
+    position: relative;
+    color: rgb(0, 166, 0);
+    overflow: hidden;
+    padding: 20px 70px;
+    font-size: 180%;
+    text-decoration: none;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 20%;
+    box-shadow: 0 20px 50px rgb(255 255 255 / 5%);
+    height: 2%;
+    width: 5%;
+    cursor: pointer;
+    margin-bottom: 20px; 
+  }
+  
+  a:before {
+    position: absolute;
+    width: 50%;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    content: '';
+    background: rgb(142 255 240 / 10%);
+  }
+  
+  a span:nth-child(1),
+  a span:nth-child(3) {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, rgb(0, 166, 0), #34ffea);
+    animation: animate1 2s linear infinite;
+  }
+  
+  @keyframes animate1 {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  a span:nth-child(2),
+  a span:nth-child(4) {
+    position: absolute;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgb(0, 166, 0), #34ffea);
+    animation: animate2 2s linear infinite;
+    animation-delay: 1s;
+  }
+  
+  @keyframes animate2 {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  } */
+  /*************************************************************************************************************
+  **************************************************************************************************************/
+  /* .button-container {
+    display: flex;
+    flex-direction: rows;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap:10%
+  }
+  
+  a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  a:hover {
+    background-color: #218838;
+  } */
+  
+  /* .button-container {
+    display: flex;
+    flex-direction: rows;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap:10%
+  }
+  
+  a {
+    display: inline-block;
+    padding: 15px 30px;
+    margin-bottom: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(45deg, #2e777b, #1b58ad);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  a:hover {
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-25px);
+  } */
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    gap: 5%;
+    position: fixed;
+    top: 0; /* Vous pouvez ajuster la propriété 'top' en fonction de votre conception */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  a {
+    display: inline-block;
+    padding: 15px 30px;
+    margin-bottom: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(45deg, #2e777b, #1b58ad);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease ;
+  }
+  
+  a:hover {
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-25px);
+  }
+  
+  /*************************************************************************************************/
+  /* .choixx {
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:15%;
+    justify-content: center;
+
+  } */
+  .choixx {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -1000%);
+  }
+  
+  .choix1,.choix2 {
+    background-color: beige;
+    margin-bottom: 10px;
+    padding: 3px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    
+
+  }
+  .titre {
+    color: #01375b; /* Couleur du texte */
+    font-size: 66px; /* Taille de la police */
+    text-align: center; /* Alignement du texte au centre */
+    margin-top: 150px; /* Marge en haut */
+    margin-bottom: 30px; /* Marge en bas */
+    text-transform: uppercase; /* Convertit le texte en majuscules */
+    font-weight: bold; /* Poids de la police en gras */
+    animation: scrollDown 8s ease-out infinite;
+
+  }
+  @keyframes scrollDown {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+  }
+  .background {
+    width: 100%;
+    height: 100vh; /* Utilisez la hauteur appropriée selon vos besoins */
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out; /* Ajoutez une transition pour un changement en douceur */
+  }

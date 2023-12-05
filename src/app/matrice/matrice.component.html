@@ -1,0 +1,197 @@
+<div>
+    <img  [src]=myimage class="bg-img">
+    
+  </div>
+  <!-- <button (click)="test()">tester</button> -->
+  <div class="profile-picture"  #home routerLink="../" routerLinkActive="active">
+    <img [src]="myicon" alt="Description de l'image">
+   </div>
+   <div class="profile-picturee" (click)="reloadPage()">
+    <img [src]="reload" alt="Description de l'image">
+   </div>
+<h2 class="titre">Multiplier Deux Matrices</h2>
+  <div class="container">
+    <form [formGroup]="matrixForm" >
+      <label for="rows" class="titre1">Nombre De Lignes/Colonnes:</label>
+      <input type="number" id="rows" formControlName="rows" class="form-control" placeholder="nombre de ligne">
+      <input type="number" id="columns" formControlName="columns" class="form-control2" placeholder="nombre de colonne">
+      <div class="choixx">
+        <input type="number" id="mA" formControlName="mA" class="form-control3" placeholder="Largeur de bande A" *ngIf="selectedMatrixA=='Matrice bande' || selectedMatrixA=='Matrice demi-bande inferieur' || selectedMatrixA=='Matrice demi-bande superieur' "  > <!-- -->
+        <input type="number" id="BA" formControlName="mB" class="form-control4" placeholder="Largeur de bande B" *ngIf="selectedMatrixB=='Matrice bande' || selectedMatrixB=='Matrice demi-bande inferieur' || selectedMatrixB=='Matrice demi-bande superieur' " > <!-- -->
+      </div>
+      <!-- <button mat-button type="submit" [disabled]="matrixForm.invalid" (click)="generateMatrices()" class="button1"> Matrice dense</button> -->
+      <!-- <button mat-button type="submit" [disabled]="matrixForm.invalid" class="button2" (click)="generateMatrices()">Matrice</button>
+      <button mat-button type="submit" [disabled]="matrixForm.invalid" class="button3">Matrice 2</button>
+      <button mat-button type="submit" [disabled]="matrixForm.invalid" class="button4">Matrice 3</button> -->
+    </form>
+    <div class="choixx" *ngIf="matrixForm.get('rows')?.value >0 && matrixForm.get('columns')?.value >0">
+      <select id="matriceList1" name="matriceList1" [(ngModel)]="selectedMatrixA" (change)="onMatrixASelectionChange()" class="choix1">
+        <option value="" disabled selected>Sélectionnez une matrice</option>
+        <option *ngFor="let matrix of matricesA" [value]="matrix.name" >{{ matrix.name }}</option>
+      </select>
+    
+      <select id="matriceList2" name="matriceList2"  [(ngModel)]="selectedMatrixB" (change)="onMatrixBSelectionChange()" class="choix2">
+        <option value="" disabled selected>Sélectionnez une matrice</option>
+        <option *ngFor="let matrix of matricesB" [value]="matrix.name" >{{ matrix.name }}</option>
+        <option  *ngIf="selectedMatrixA == 'Matrice bande'"  >Matrice inverse</option>
+        <option  *ngIf="selectedMatrixA == 'Matrice bande'" >Matrice transposée</option>
+      </select>
+  </div>
+  <!-- *ngIf="isWithinBande(i, j)" -->
+    <div class="cont">
+      <div *ngIf="matrixA.length > 0 && matrixB.length > 0" class="mat" >
+        <h3 class="tit_mata" style="display: none;" #titre_matA >MatriceA</h3>
+        <!-- matriceA dense -->
+        <div class="cont1" style="display: none;" #id_denseA>
+          <table class="mata">
+            <tr *ngFor="let row of matrixA; let i = index">
+              <td *ngFor="let cell of matrixA; let j = index">
+                <input id="number[i]" type="number" [(ngModel)]="matrixA[i][j]" class="inp" >
+              </td>
+            </tr>
+          </table>
+        </div>
+        <!-- matriceA triangulaire sup -->
+        <div class="cont1" style="display: none;" #id_denseA_sup>
+          <table class="mata">
+            <tr *ngFor="let row of matrixA; let i = index">
+              <td *ngFor="let cell of matrixA; let j = index">
+                <input type="number" [(ngModel)]="matrixA[i][j]" class="inp" *ngIf="i<=j">
+              </td>
+            </tr>
+          </table>
+        </div>
+    <!-- matriceA triangulaire inf -->
+    <div class="cont1" style="display: none;" #id_denseA_inf>
+      <table class="mata">
+        <tr *ngFor="let row of matrixA; let i = index">
+          <td *ngFor="let cell of matrixA; let j = index">
+            <input type="number" [(ngModel)]="matrixA[i][j]" class="inp" *ngIf="i>=j">
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- matriceA  bande -->
+    <div class="cont1" style="display: none;" #id_bande >
+      <table class="mata">
+        <tr *ngFor="let row of matrixA; let i = index">
+          <td *ngFor="let cell of matrixA; let j = index">
+            <input type="number" [(ngModel)]="matrixA[i][j]" class="inp" *ngIf="isWithinBandeA(i, j) ">
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- matriceA demi-bande inf  -->
+    <div class="cont1" style="display: none;" #id_denseA_bande_inf>
+      <table class="mata">
+        <tr *ngFor="let row of matrixA; let i = index">
+          <td *ngFor="let cell of matrixA; let j = index">
+            <input type="number" [(ngModel)]="matrixA[i][j]" class="inp" *ngIf="isWithinBandeA(i, j) && i>=j">
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- matriceA demi-bande sup -->
+    <div class="cont1" style="display: none;" #id_denseA_bande_sup>
+      <table class="mata">
+        <tr *ngFor="let row of matrixA; let i = index" #id_denseA_bande_sup>
+          <td *ngFor="let cell of matrixA; let j = index">
+            <input type="number" [(ngModel)]="matrixA[i][j]" class="inp" *ngIf="isWithinBandeA(i, j) && i<=j">
+          </td>
+        </tr>
+      </table>
+    </div>
+<!--matriceB dense-->
+        <h3 class="tit_matb" style="display: none;" #titre_matB>MatriceB</h3>
+        <div class="cont1" style="display: none;" #id_denseB>
+          <table class="matb">
+          <tr *ngFor="let row of matrixB; let i = index">
+            <td *ngFor="let cell of matrixB; let j = index">
+              <input type="number" [(ngModel)]="matrixB[i][j]" class="inp">
+            </td>
+          </tr>
+        </table>
+        </div>
+    <!--matriceB triangulaire sup-->
+    <div class="cont1" style="display: none;" #id_denseB_sup>
+      <table class="matb">
+      <tr *ngFor="let row of matrixB; let i = index">
+        <td *ngFor="let cell of matrixB; let j = index">
+          <input type="number" [(ngModel)]="matrixB[i][j]" class="inp" *ngIf="i<=j">
+        </td>
+      </tr>
+    </table>
+    </div>
+    <!--matriceB triangulaire inf-->
+    <div class="cont1" style="display: none;" #id_denseB_inf>
+      <table class="matb">
+      <tr *ngFor="let row of matrixB; let i = index">
+        <td *ngFor="let cell of matrixB; let j = index">
+          <input type="number" [(ngModel)]="matrixB[i][j]" class="inp" *ngIf="i>=j">
+        </td>
+      </tr>
+    </table>
+    </div>
+    <!--matriceB bande-->
+    <div class="cont1" style="display: none;" #id_denseB_bande>
+      <table class="matb">
+      <tr *ngFor="let row of matrixB; let i = index">
+        <td *ngFor="let cell of matrixB; let j = index">
+          <input type="number" [(ngModel)]="matrixB[i][j]" class="inp" *ngIf="isWithinBandeB(i, j)">
+        </td>
+      </tr>
+    </table>
+    </div>
+    <!--matriceB demi-bande inf-->
+    <div class="cont1" style="display: none;" #id_denseB_bande_inf>
+      <table class="matb">
+      <tr *ngFor="let row of matrixB; let i = index">
+        <td *ngFor="let cell of matrixB; let j = index">
+          <input type="number" [(ngModel)]="matrixB[i][j]" class="inp" *ngIf="isWithinBandeB(i, j) && i>=j">
+        </td>
+      </tr>
+    </table>
+    </div>
+    <!--matriceB demi-bande sup-->
+    <div class="cont1" style="display: none;" #id_denseB_bande_sup>
+      <table class="matb">
+      <tr *ngFor="let row of matrixB; let i = index">
+        <td *ngFor="let cell of matrixB; let j = index">
+          <input type="number" [(ngModel)]="matrixB[i][j]" class="inp" *ngIf="isWithinBandeB(i, j) && i<=j">
+        </td>
+      </tr>
+    </table>
+    </div>
+        
+      </div>
+    </div>
+    <button *ngIf="matrixA.length > 0 && matrixB.length > 0" (click)="algo_choix()" class="button_mult">Multiplier les matrices</button>
+    </div>
+  
+  <div *ngIf="resultMatrix.length > 0" style="display: none;" #id>
+    <h3 class="tit_res">Résultat</h3>
+    <table class="res">
+      <tr *ngFor="let row of resultMatrix; let i = index">
+        <td *ngFor="let cell of row; let j = index">
+          {{ resultMatrix[i][j] }}
+        </td>
+      </tr>
+    </table>
+  </div>
+    <!-- <div class="choix">
+      <label>
+        <button >Choix 1</button> 
+          </label>
+    
+      <label>
+        <button>Choix 2</button> 
+      </label>
+    
+      <label>
+        <button>Choix 3</button> 
+      </label>
+    
+      <label>
+        <button>Choix 4</button> 
+      </label>
+    </div> -->

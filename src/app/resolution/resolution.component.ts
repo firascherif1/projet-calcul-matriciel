@@ -370,10 +370,10 @@ export class ResolutionComponent implements OnInit {
   }
   //resolution itérative dense
   else if(this.selectedMatrixA=="Matrice Dense" && this.selectedMatrixB=="Méthode de Gauss-Seidel"){
-    this.gauss_seidel(this.matrixA.map(row => [...row]),[...this.vectorB],this.matrixForm.get('maxiter')?.value);
+    this.test('s');
   }
   else if(this.selectedMatrixA=="Matrice Dense" && this.selectedMatrixB=="Méthode de Jacobi"){
-    this.jacobi(this.matrixA.map(row => [...row]),[...this.vectorB],this.matrixForm.get('maxiter')?.value);
+    this.test('j');
   }
   //MATRICE BANDE
   else if(this.selectedMatrixA=="Matrice Bande" && this.selectedMatrixB=="Décomposition LU"){
@@ -937,12 +937,26 @@ resolBandeCholesky(matrix:number[][],vector:number[],m:number){
 
       }
   }
+  
+test(str:string){
+  if(Number.isInteger(this.matrixForm.get('maxiter')?.value) && this.matrixForm.get('maxiter')?.value > 0){
+    if(str=='s'){
+      this.gauss_seidel(this.matrixA.map(row => [...row]),[...this.vectorB],this.matrixForm.get('maxiter')?.value)
+    }
+    else if(str=='j'){
+      this.jacobi(this.matrixA.map(row => [...row]),[...this.vectorB],this.matrixForm.get('maxiter')?.value)
 
+    }
+  }
+  else{
+    alert("Nombre d'itération doit étre entier supérieur à 0 ")
+  }
+}
   //methode de Gauss-Seidel
-  gauss_seidel(matrixA: number[][], vectorB: number[], max_iter: number = 1000, epsilon: number = 1e-6){
+  gauss_seidel(matrixA: number[][], vectorB: number[], max_iter: number = 100, epsilon: number = 1e-6):number[]{
     if(this.convergenceGauss_Seidel(matrixA)){
       const r=this.res.nativeElement;
-  r.style.display="block";
+      r.style.display="block";
       const n = matrixA.length;
      
       let max = 0;
@@ -966,13 +980,14 @@ resolBandeCholesky(matrix:number[][],vector:number[],m:number){
               this.resultVector[i] = s;
           }
           if(max < epsilon || k == max_iter){
-               this.resultVector;
+              return  this.resultVector;
           }
           k++;
       }
     } 
     else{
       alert("Matrice de Gauss Seidel Diverge")
+      return this.resultVector;
     }
   }
 onMatrixChange(value: number, i: number, j: number): void {
@@ -1239,3 +1254,7 @@ convergenceGauss_Seidel(matrix: number[][]): boolean{
   else return false;
 }
 }
+function type(value: any) {
+  throw new Error('Function not implemented.');
+}
+

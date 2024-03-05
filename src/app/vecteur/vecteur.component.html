@@ -7,12 +7,12 @@
  <div class="profile-picturee" (click)="reloadPage()">
   <img [src]="reload" alt="Description de l'image">
  </div>
-<h2 class="titre">Multiplication de Matrice par Vecteur</h2>
+<h2 class="titre">Matrix Multiplication by Vector</h2>
   <div>
     <form [formGroup]="matrixForm" >
-      <label for="rows" class="titre1">Nombre de lignes/colonnes:</label>
-      <input type="number" id="rows" formControlName="rows" class="form-control" placeholder="nombre de lignes">
-      <input type="number" #in id="columns" formControlName="columns" class="form-control2"  placeholder="nombre de colonnes">
+      <label for="rows" class="titre1">Number of rows/columns:</label>
+      <input type="number" id="rows" formControlName="rows" class="form-control" placeholder="Nombre of Rows">
+      <input type="number" #in id="columns" formControlName="columns" class="form-control2"  placeholder="Nombre of Columns">
       <input type="number" id="mA" formControlName="mA" class="form-control" placeholder="Largeur de bande A" *ngIf="selectedMatrixA=='Matrice bande' || selectedMatrixA=='Matrice demi-bande inferieur' || selectedMatrixA=='Matrice demi-bande superieur' "  >
   
       <!-- <button mat-button type="submit" [disabled]="matrixForm.invalid" (click)="generateMatrixAndVector()" class="button1"> Matrice dense</button> -->
@@ -22,13 +22,13 @@
     </form>
     <div class="choixx" *ngIf="matrixForm.get('rows')?.value >0 && matrixForm.get('columns')?.value >0">
       <select id="matriceList1" name="matriceList1" [(ngModel)]="selectedMatrixA" (change)="onMatrixASelectionChange()" class="choix1">
-        <option value="" disabled selected>Sélectionnez une matrice</option>
+        <option value="" disabled selected>Select a matrix</option>
         <option *ngFor="let matrix of matricesA" [value]="matrix.name">{{ matrix.name }}</option>
       </select>
   </div>
   <div class="cont">
     <div *ngIf="matrixA.length > 0 && vectorB.length > 0" class="mat">
-      <h3 class="tit_mata">Matrice A</h3>
+      <h3 class="tit_mata">Matrix A</h3>
       <div class="cont1" style="display: none;" #id_denseA>
         <table class="mata">
           <tr *ngFor="let row of matrixA; let i = index">
@@ -89,7 +89,7 @@
         </table>
       </div>
   
-      <h3 class="tit_matb">Vecteur B</h3>
+      <h3 class="tit_matb">Vector B</h3>
      <div class="cont1">
       <table class="matb">
         <tr *ngFor="let cell of matrixA; let i = index">
@@ -102,14 +102,14 @@
    </div>
   
   </div>
-    <button *ngIf="matrixA.length > 0 && vectorB.length > 0" (click)="algo_choix()" class="button_mult">Multiplier les matrices</button>
+    <button *ngIf="matrixA.length > 0 && vectorB.length > 0" (click)="algo_choix()" class="button_mult">Multiply matrices</button>
     </div>
   
    
   
   
   <div *ngIf="resultVector.length > 0" style="display: none;" #id>
-    <h3 class="tit_res">Résultat du produit Matrice-Vecteur</h3>
+    <h3 class="tit_res">Matrix-Vector product result</h3>
     <table class="res">
       <tr *ngFor="let cell of resultVector; let i = index">
         <td>

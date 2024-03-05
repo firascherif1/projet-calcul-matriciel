@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   currentBackground="";
+  myicon:string="assets/images/logo.png";
   ngOnInit(): void {
     this.getRandomBackground();
   }

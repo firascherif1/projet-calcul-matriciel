@@ -9,12 +9,12 @@
    <div class="profile-picturee" (click)="reloadPage()">
     <img [src]="reload" alt="Description de l'image">
    </div>
-<h2 class="titre">Multiplier Deux Matrices</h2>
+<h2 class="titre">Multiply Two Matrices</h2>
   <div class="container">
     <form [formGroup]="matrixForm" >
-      <label for="rows" class="titre1">Nombre De Lignes/Colonnes:</label>
-      <input type="number" id="rows" formControlName="rows" class="form-control" placeholder="nombre de ligne">
-      <input type="number" id="columns" formControlName="columns" class="form-control2" placeholder="nombre de colonne">
+      <label for="rows" class="titre1">Number of Rows/Columns:</label>
+      <input type="number" id="rows" formControlName="rows" class="form-control" placeholder="Nombre of Rows">
+      <input type="number" id="columns" formControlName="columns" class="form-control2" placeholder="Nombre of Columns">
       <div class="choixx">
         <input type="number" id="mA" formControlName="mA" class="form-control3" placeholder="Largeur de bande A" *ngIf="selectedMatrixA=='Matrice bande' || selectedMatrixA=='Matrice demi-bande inferieur' || selectedMatrixA=='Matrice demi-bande superieur' "  > <!-- -->
         <input type="number" id="BA" formControlName="mB" class="form-control4" placeholder="Largeur de bande B" *ngIf="selectedMatrixB=='Matrice bande' || selectedMatrixB=='Matrice demi-bande inferieur' || selectedMatrixB=='Matrice demi-bande superieur' " > <!-- -->
@@ -26,12 +26,12 @@
     </form>
     <div class="choixx" *ngIf="matrixForm.get('rows')?.value >0 && matrixForm.get('columns')?.value >0">
       <select id="matriceList1" name="matriceList1" [(ngModel)]="selectedMatrixA" (change)="onMatrixASelectionChange()" class="choix1">
-        <option value="" disabled selected>Sélectionnez une matrice</option>
+        <option value="" disabled selected>Select a matrix</option>
         <option *ngFor="let matrix of matricesA" [value]="matrix.name" >{{ matrix.name }}</option>
       </select>
     
       <select id="matriceList2" name="matriceList2"  [(ngModel)]="selectedMatrixB" (change)="onMatrixBSelectionChange()" class="choix2">
-        <option value="" disabled selected>Sélectionnez une matrice</option>
+        <option value="" disabled selected>Select a matrix</option>
         <option *ngFor="let matrix of matricesB" [value]="matrix.name" >{{ matrix.name }}</option>
         <option  *ngIf="selectedMatrixA == 'Matrice bande'"  >Matrice inverse</option>
         <option  *ngIf="selectedMatrixA == 'Matrice bande'" >Matrice transposée</option>
@@ -40,7 +40,7 @@
   <!-- *ngIf="isWithinBande(i, j)" -->
     <div class="cont">
       <div *ngIf="matrixA.length > 0 && matrixB.length > 0" class="mat" >
-        <h3 class="tit_mata" style="display: none;" #titre_matA >MatriceA</h3>
+        <h3 class="tit_mata" style="display: none;" #titre_matA >MatrixA</h3>
         <!-- matriceA dense -->
         <div class="cont1" style="display: none;" #id_denseA>
           <table class="mata">
@@ -102,7 +102,7 @@
       </table>
     </div>
 <!--matriceB dense-->
-        <h3 class="tit_matb" style="display: none;" #titre_matB>MatriceB</h3>
+        <h3 class="tit_matb" style="display: none;" #titre_matB>MatrixB</h3>
         <div class="cont1" style="display: none;" #id_denseB>
           <table class="matb">
           <tr *ngFor="let row of matrixB; let i = index">
@@ -165,11 +165,11 @@
         
       </div>
     </div>
-    <button *ngIf="matrixA.length > 0 && matrixB.length > 0" (click)="algo_choix()" class="button_mult">Multiplier les matrices</button>
+    <button *ngIf="matrixA.length > 0 && matrixB.length > 0" (click)="algo_choix()" class="button_mult">Multiply matrices</button>
     </div>
   
   <div *ngIf="resultMatrix.length > 0" style="display: none;" #id>
-    <h3 class="tit_res">Résultat</h3>
+    <h3 class="tit_res">Result</h3>
     <table class="res">
       <tr *ngFor="let row of resultMatrix; let i = index">
         <td *ngFor="let cell of row; let j = index">
@@ -195,3 +195,4 @@
         <button>Choix 4</button> 
       </label>
     </div> -->
+    

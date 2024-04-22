@@ -11,8 +11,8 @@
     <div>
       <form [formGroup]="matrixForm" >
         <label for="rows" class="titre1">Number of Rows/Columns:</label>
-        <input type="number" id="rows" formControlName="rows" class="form-control" placeholder="Nombre of Rows">
-        <input type="number" #in id="columns" formControlName="columns" class="form-control2"  placeholder="Nombre of Columns">
+        <input type="number" id="rows" formControlName="rows" class="form-control" placeholder="Nombre of Rows" [(ngModel)]="firstInputValue" (input)="updateSecondInput($event)">
+        <input type="number" #in id="columns" formControlName="columns" class="form-control2"  placeholder="Nombre of Columns" [(ngModel)]="secondInputValue" (blur)="onShowAlertChange()" readonly>
         <input type="number" id="mA" formControlName="mA" class="form-control" placeholder="Largeur de bande A" *ngIf="selectedMatrixA=='Matrice Bande' || selectedMatrixA=='Matrice demi-bande inferieur' || selectedMatrixA=='Matrice demi-bande superieur' "  >
         <input type="number" id="maxiter" formControlName="maxiter" class="form-control" placeholder="Nombre d'itération" *ngIf="(selectedMatrixA=='Matrice Dense' && selectedMatrixB=='Méthode de Jacobi') || (selectedMatrixA=='Matrice Dense' && selectedMatrixB=='Méthode de Gauss-Seidel')"  >
     
@@ -48,7 +48,7 @@
         </optgroup>
     </select>
 </div> -->
-<div class="choixx" *ngIf="matrixForm.get('rows')?.value >0 && matrixForm.get('columns')?.value >0">
+<div class="choixx" *ngIf="matrixForm.get('rows')?.value >0 && matrixForm.get('columns')?.value >0 && matrixForm.get('rows')?.value == matrixForm.get('columns')?.value">
     <select id="matriceList2" name="matriceList2"  [(ngModel)]="selectedMatrixA" (change)="onMatrixASelectionChange()" class="choix2" >
         <option value="" disabled selected>Select a Matrix</option>
         <!-- <option value=""*ngIf="selectedMatrixA == 'Matrice Dense'|| selectedMatrixA =='Matrice Bande'">Méthodes d’élimination de Gauss</option>

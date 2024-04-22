@@ -10,6 +10,8 @@ export class VecteurComponent implements OnInit {
   myimage="assets/images/back22.jpg"
   myicon:string="assets/images/icon_home_algo.png";
   reload:string="assets/images/reload_algo.png";
+  firstInputValue: number | null = null;
+  secondInputValue: number | null = null;
   matrixForm: FormGroup;
   matrixA: number[][] = [];
   vectorB: number[] = [];
@@ -31,7 +33,10 @@ export class VecteurComponent implements OnInit {
       mA: [[Validators.required, Validators.min(1), Validators.max(this.matrixA.length-1)]]
     });
   }
-
+  updateSecondInput(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.secondInputValue = value !== null ? parseFloat(value) : null;
+  }
   generateMatrixAndVector() {
     const rowsControl = this.matrixForm.get('rows');
     const columnsControl = this.matrixForm.get('columns');
@@ -329,5 +334,15 @@ m=2;
 isWithinBande(i: number, j: number): boolean {
   return Math.abs(i - j) <= this.matrixForm.get('mA')?.value;
 }
+onShowAlertChange() {
+  if (this.matrixForm.get('rows')?.value != this.matrixForm.get('columns')?.value) {
+    console.log("here")
+    this.showCustomAlert(); // Remplacez 'maFonction' par le nom de votre fonction à appeler
+  }
+}
 
+showCustomAlert() {
+  alert("The values of Rows and Columns must be equal");
+  window.location.reload();
+}
 }

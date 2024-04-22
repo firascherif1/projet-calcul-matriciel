@@ -12,10 +12,14 @@ export class MatriceComponent implements OnInit {
 myimage="assets/images/back22.jpg"
 myicon:string="assets/images/icon_home_algo.png";
 reload:string="assets/images/reload_algo.png";
+defaultValue: number | undefined ;
+firstInputValue: number | null = null;
+  secondInputValue: number | null = null;
   matrixForm: FormGroup;
   matrixA: number[][] = [];
   matrixB: number[][] = [];
   resultMatrix: number[][] = [];
+  showAlert: boolean = false;
   @ViewChild('id') res!: ElementRef;
   //id de matrice A
   @ViewChild('id_denseA') denseA!: ElementRef;
@@ -33,6 +37,7 @@ reload:string="assets/images/reload_algo.png";
   @ViewChild('id_denseB_bande_inf') denseB_bande_inf!: ElementRef;
   @ViewChild('id_denseB_bande_sup') denseB_bande_sup!: ElementRef;
   @ViewChild('id_denseB_bande') denseB_bande!: ElementRef;
+  
   constructor(private formBuilder: FormBuilder) {
     this.matrixForm = this.formBuilder.group({
       rows: [ [Validators.required, Validators.min(1)]],
@@ -40,9 +45,15 @@ reload:string="assets/images/reload_algo.png";
       mA: [[Validators.required, Validators.min(1), Validators.max(this.matrixA.length-1)]],
       mB: [[Validators.required, Validators.min(1), Validators.max(this.matrixB.length-1)]]
     });
+    
+    // this.matrixForm.get('columns')?.setValidators(this.matrixForm.get('rows')?.value);
     // Mettre à jour la définition de mA après que matrixForm a été initialisé
 this.matrixForm.get('mA')?.setValidators([Validators.required, Validators.min(1), Validators.max(this.matrixA.length - 1)]);
     
+  }
+  updateSecondInput(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.secondInputValue = value !== null ? parseFloat(value) : null;
   }
   getDefaultValueForMA(){
     return this.matrixForm.get('rows')?.value;
@@ -1312,4 +1323,15 @@ algo_choix(){
 }
 
 
+onShowAlertChange() {
+  if (this.matrixForm.get('rows')?.value != this.matrixForm.get('columns')?.value) {
+    console.log("here")
+    this.showCustomAlert(); // Remplacez 'maFonction' par le nom de votre fonction à appeler
+  }
+}
+
+showCustomAlert() {
+  alert("The values of Rows and Columns must be equal");
+  window.location.reload();
+}
 }

@@ -13,6 +13,8 @@ export class ResolutionComponent implements OnInit {
   myimage="assets/images/back22.jpg"
   myicon:string="assets/images/icon_home_algo.png";
   reload:string="assets/images/reload_algo.png";
+  firstInputValue: number | null = null;
+  secondInputValue: number | null = null;
   matrixForm: FormGroup;
   matrixA: number[][] = [];
   vectorB: number[] = [];
@@ -1252,6 +1254,21 @@ convergenceGauss_Seidel(matrix: number[][]): boolean{
       return true;
   }
   else return false;
+}
+onShowAlertChange() {
+  if (this.matrixForm.get('rows')?.value != this.matrixForm.get('columns')?.value) {
+    
+    this.showCustomAlert(); // Remplacez 'maFonction' par le nom de votre fonction à appeler
+  }
+}
+
+showCustomAlert() {
+  alert("The values of Rows and Columns must be equal");
+  window.location.reload();
+}
+updateSecondInput(event: Event): void {
+  const value = (event.target as HTMLInputElement).value;
+  this.secondInputValue = value !== null ? parseFloat(value) : null;
 }
 }
 function type(value: any) {
